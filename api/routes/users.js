@@ -1,6 +1,7 @@
 const express = require('express');
 const users = require('../models/users.json');
 const builder = require('xmlbuilder');
+const NotFound = require('../helpers/errors');
 
 const router = express.Router();
 
@@ -10,13 +11,21 @@ const getUsers = (req, res) => {
     else
         res.send(users);
 };
-const getUser = (req, res) => 
-    res.send(users.find(user => user.id===req.params.id));
+const getUser = (req, res) => {
+    const user = users.find(user => user.id===req.params.id);
+    if(user)
+        res.send(user);
+    else
+        throw new NotFound();
+};
+const postUsers = (req, res) =>
+    res.send(req.body);
 
 router.get('/', getUsers);
 router.get('/:id', getUser);
-//router.post('/', postUsers);
+router.post('/', express.json(), postUsers);
 //router.patch('/:id', patchUsers);
-//router.delete('/:id', deleteUsers)
+//router.delete('/:id', deleteUser);
+//router.delete('/', deleteUsers);
 
 module.exports = router;
