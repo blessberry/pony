@@ -2,8 +2,11 @@ const express = require('express');
 const users = require('../models/users.json');
 const builder = require('xmlbuilder');
 const NotFound = require('../helpers/errors');
+const requireAuth = require('../helpers/requireAuth');
 
 const router = express.Router();
+
+router.use(requireAuth);
 
 const getUsers = (req, res) => { 
     if (req.accepts('application/xml')) 

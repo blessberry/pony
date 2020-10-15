@@ -5,11 +5,14 @@ const compress = require('compression');
 const usersRoutes = require('./routes/users.js');
 const emailsRoutes = require('./routes/emails.js');
 const notFoundRoutes = require('./routes/notfound.js');
+const basicAuth = require('./helpers/basicAuth');
+const findUser = require('./helpers/findUser');
 
 const app = express();
 
 app.use(compress({ threshold: 0 }));
 app.use(logger('tiny'));
+app.use(basicAuth(findUser.byCredentials));
 
 app.use('/users', usersRoutes);
 app.use('/emails', emailsRoutes);
