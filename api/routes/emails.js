@@ -17,7 +17,7 @@ const getEmail = (req, res) => {
         throw new NotFound();
 }
 const postEmails = (req, res) => {
-    res.send(req.files);
+    res.send(req.body);
 };
 router.get('/', getEmails);
 router.get('/:id', getEmail);
