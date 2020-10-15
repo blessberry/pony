@@ -14,12 +14,13 @@ const app = express();
 
 app.use(compress({ threshold: 0 }));
 app.use(logger('tiny'));
-app.use('/tokens', tokensRouter);
 app.use(basicAuth(findUser.byCredentials));
 app.use(tokenAuth(findUser.byToken));
 
 app.use('/users', usersRoutes);
 app.use('/emails', emailsRoutes);
+app.use('/tokens', tokensRouter);
+
 app.use(notFoundRoutes);
 
 
