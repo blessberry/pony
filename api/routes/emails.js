@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const multer = require('multer');
 const emails = require('../models/emails.json');
-const NotFound = require('../helpers/errors');
+const NotFound = require('../helpers/errors/notFound');
 const enforce = require('../helpers/enforce');
 const requireAuth = require('../helpers/requireAuth');
 

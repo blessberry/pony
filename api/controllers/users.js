@@ -1,6 +1,7 @@
 const builder = require('xmlbuilder');
 const users = require('../models/users.json');
-const NotFound = require('../helpers/errors');
+const NotFound = require('../helpers/errors/notFound');
+const NotImplemented = require('../helpers/errors/notImplemented');
 
 module.exports = {
     getUsers : (req, res) => { 
@@ -16,5 +17,5 @@ module.exports = {
             else
                 throw new NotFound();
     },
-    postUsers : (req, res) => res.send(req.body)
+    postUsers : (req, res) => res.send(req.body),
 };

@@ -6,12 +6,16 @@ const router = express.Router();
 
 middlewares(router);
 
-router.get('/', controllers.getUsers);
-router.get('/:id', controllers.getUser);
-router.post('/', express.json(), controllers.postUsers);
+router.route('/')
+    .get(controllers.getUsers)
+    .post(express.json(), controllers.postUsers)
+    //.patch(controllers.patchUsers)
+    //.delete(controllers.deleteUsers)
 
-//router.patch('/:id', patchUsers);
-//router.delete('/:id', deleteUser);
-//router.delete('/', deleteUsers);
+router.route('/:id')
+    .get(controllers.getUser)
+    //.post(controllers.postUser)
+    //.patch(controllers.patchUser)
+    //.delete(controllers.deleteUser)
 
 module.exports = router;
